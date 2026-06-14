@@ -14,6 +14,14 @@ export interface IUser extends Document {
   avatar?: string;
   resume?: string;
   skills: string[];
+  savedJobs: mongoose.Types.ObjectId[];
+  headline?: string;
+  bio?: string;
+  phone?: string;
+  location?: string;
+  linkedin?: string;
+  github?: string;
+  portfolio?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -47,7 +55,20 @@ const userSchema = new Schema<IUser>(
     skills: {
       type: [String],
       default: []
-    }
+    },
+    savedJobs: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Job"
+      }
+    ],
+    headline: String,
+    bio: String,
+    phone: String,
+    location: String,
+    linkedin: String,
+    github: String,
+    portfolio: String
   },
   {
     timestamps: true
